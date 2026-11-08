@@ -1,426 +1,167 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#090909">
-<title>TirriBet | VIP Casino Experience</title>
+<meta name="theme-color" content="#080808">
+<title>TIRRIBET | Royal Experience</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@600;700;800;900&display=swap');
-
-:root {
-  --gold: #d6ae52;
-  --gold2: #ffdf91;
-  --bg: #08090c;
-  --panel: #111319;
-  --muted: #858994;
-  --border: rgba(214,174,82,.19);
+:root{
+--gold:#d8b66b;
+--light:#f5dfaa;
+--black:#080808;
+--panel:#121212;
+--line:rgba(216,182,107,.2);
 }
-
-* { box-sizing:border-box; margin:0; padding:0; }
-
-body {
-  background:var(--bg);
-  color:#fff;
-  font-family:Inter,sans-serif;
-  min-height:100vh;
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--black);color:#fff;font-family:Inter,sans-serif}
+a{text-decoration:none;color:inherit}
+button{cursor:pointer;font-family:inherit}
+.gold{color:var(--gold)}
+header{
+height:85px;padding:0 5%;display:flex;align-items:center;
+justify-content:space-between;background:#090909;
+border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10
 }
-
-button { cursor:pointer; font-family:inherit; }
-
-header {
-  height:76px;
-  position:sticky;
-  top:0;
-  z-index:20;
-  background:rgba(8,9,12,.96);
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid var(--border);
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:0 5%;
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{width:65px;height:65px;object-fit:contain}
+.brand strong{font-size:28px;letter-spacing:2px}
+.brand strong span{color:var(--gold)}
+nav{display:flex;gap:30px}
+nav a{font-size:11px;font-weight:800;color:#aaa;letter-spacing:1px}
+nav a:hover{color:var(--gold)}
+.btn{
+background:linear-gradient(120deg,#f5dfaa,#b58a43);
+color:#17120a;border:0;padding:14px 23px;
+font-size:10px;font-weight:900;letter-spacing:1px
 }
-
-.logo {
-  font-family:Orbitron,sans-serif;
-  font-size:25px;
-  font-weight:900;
-  letter-spacing:2px;
-  color:var(--gold);
-  text-shadow:0 0 18px rgba(214,174,82,.3);
+.btn-outline{
+background:transparent;color:white;border:1px solid var(--line);
+padding:13px 20px;font-size:10px;font-weight:800
 }
-
-.logo span { color:white; }
-
-.header-right {
-  display:flex;
-  align-items:center;
-  gap:15px;
+.hero{
+min-height:620px;display:grid;grid-template-columns:1.1fr .9fr;
+align-items:center;padding:70px 8%;
+background:
+radial-gradient(ellipse at 80% 50%,#79562245,transparent 40%),
+linear-gradient(120deg,#15120d,#080808 65%);
+border-bottom:1px solid var(--line);
 }
-
-.balance {
-  background:#17181c;
-  border:1px solid var(--border);
-  padding:10px 16px;
-  border-radius:8px;
-  color:var(--gold2);
-  font-weight:800;
-  font-size:13px;
+.kicker{color:var(--gold);font-size:10px;letter-spacing:5px;font-weight:800}
+.hero h1{
+font-family:'Barlow Condensed',sans-serif;
+font-size:clamp(65px,9vw,115px);line-height:.85;
+margin-top:25px;text-transform:uppercase
 }
-
-.login {
-  background:linear-gradient(135deg,#f6d78c,#b78a36);
-  border:0;
-  border-radius:7px;
-  padding:12px 20px;
-  color:#17120a;
-  font-weight:900;
+.hero h1 span{display:block;color:var(--gold)}
+.hero p{color:#aaa;line-height:2;font-size:13px;max-width:430px;margin-top:28px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.logo-display{display:flex;justify-content:center;align-items:center;position:relative}
+.logo-display:before{
+content:"";position:absolute;width:350px;height:350px;
+border:1px solid #d8b66b55;border-radius:50%;
+box-shadow:0 0 100px #d8b66b20
 }
-
-.layout {
-  display:grid;
-  grid-template-columns:220px 1fr;
-  min-height:calc(100vh - 76px);
+.logo-display img{
+width:min(90%,400px);max-height:420px;object-fit:contain;
+position:relative;filter:drop-shadow(0 15px 30px #000);
+animation:float 5s ease-in-out infinite
 }
-
-.sidebar {
-  background:#0c0d11;
-  border-right:1px solid var(--border);
-  padding:30px 16px;
+@keyframes float{50%{transform:translateY(-12px)}}
+.marquee{
+padding:18px;text-align:center;background:#101010;
+color:#aaa;font-size:10px;letter-spacing:4px;
+border-bottom:1px solid var(--line)
 }
-
-.side-title {
-  color:#777;
-  font-size:10px;
-  letter-spacing:2px;
-  font-weight:800;
-  margin:18px 12px 12px;
+.marquee span{color:var(--gold);margin:0 25px}
+main{max-width:1450px;margin:auto;padding:0 5%}
+section.content{padding-top:75px}
+.label{color:var(--gold);font-size:9px;letter-spacing:4px;font-weight:800}
+h2{
+font-family:'Barlow Condensed',sans-serif;
+font-size:43px;margin-top:10px
 }
-
-.nav-item {
-  display:flex;
-  align-items:center;
-  gap:13px;
-  padding:14px;
-  border-radius:8px;
-  color:#a5a6ac;
-  font-size:13px;
-  font-weight:600;
-  margin-bottom:5px;
-  cursor:pointer;
-  transition:.2s;
+.subtitle{color:#888;font-size:11px;margin-top:7px}
+.categories{display:flex;gap:10px;margin:25px 0;flex-wrap:wrap}
+.category{
+padding:11px 18px;background:#121212;color:#aaa;
+border:1px solid #30291d;font-size:10px;font-weight:800
 }
-
-.nav-item:hover,.nav-item.active {
-  background:linear-gradient(90deg,rgba(214,174,82,.17),transparent);
-  color:var(--gold2);
-  border-left:3px solid var(--gold);
+.category.active,.category:hover{color:var(--gold);border-color:var(--gold)}
+.games{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
+.game{
+background:#141414;border:1px solid #29251e;
+transition:.3s;overflow:hidden;cursor:pointer
 }
-
-main {
-  padding:30px 4%;
-  max-width:1600px;
-  width:100%;
-  margin:auto;
+.game:hover{transform:translateY(-6px);border-color:var(--gold)}
+.game-art{
+height:190px;display:grid;place-items:center;
+background:radial-gradient(circle,#59401c,#15120d 70%);
+position:relative
 }
-
-.hero {
-  min-height:300px;
-  border-radius:15px;
-  overflow:hidden;
-  position:relative;
-  display:flex;
-  align-items:center;
-  padding:45px;
-  background:
-    radial-gradient(ellipse at 80% 50%,rgba(174,123,35,.3),transparent 55%),
-    linear-gradient(110deg,#17130c,#17191d 65%,#292012);
-  border:1px solid rgba(214,174,82,.32);
-  box-shadow:0 15px 60px #0008;
+.game-art span{font-size:75px;filter:drop-shadow(0 8px 15px #000)}
+.game-info{padding:17px}
+.game-info strong{font-size:12px}
+.game-info p{font-size:9px;color:#888;margin-top:7px}
+.vip{
+margin-top:80px;padding:55px 6%;min-height:270px;
+display:flex;justify-content:space-between;align-items:center;
+border:1px solid var(--line);
+background:radial-gradient(ellipse at 85%,#80602c35,transparent 45%),#14120e
 }
-
-.hero:after {
-  content:"♛";
-  position:absolute;
-  right:9%;
-  top:50%;
-  transform:translateY(-50%);
-  font-size:190px;
-  color:rgba(221,181,93,.14);
-  text-shadow:0 0 50px rgba(214,174,82,.3);
+.vip h2{font-size:55px;line-height:1}
+.vip p{font-size:12px;color:#aaa;line-height:1.8;max-width:440px;margin-top:15px}
+.vip .btn{margin-top:23px}
+.seal{
+width:125px;height:125px;border:1px solid var(--gold);
+border-radius:50%;display:grid;place-items:center;
+color:var(--gold);font-size:37px;font-weight:900
 }
-
-.hero-content { position:relative; z-index:2; max-width:550px; }
-
-.eyebrow {
-  color:var(--gold2);
-  font-size:11px;
-  letter-spacing:4px;
-  font-weight:800;
-  margin-bottom:18px;
+.community{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:25px}
+.community article{
+background:linear-gradient(140deg,#1b1710,#101010);
+border:1px solid var(--line);padding:30px;min-height:200px
 }
-
-.hero h1 {
-  font-family:Orbitron,sans-serif;
-  font-size:clamp(30px,5vw,53px);
-  line-height:1.15;
-  margin-bottom:15px;
+.community h3{font-family:'Barlow Condensed';font-size:32px}
+.community p{font-size:11px;color:#999;line-height:1.8;margin-top:10px}
+.community button{margin-top:20px}
+.news{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:25px}
+.news article{background:#121212;border:1px solid #29251e;padding:25px}
+.news h3{font-size:13px;color:var(--gold);margin-bottom:12px}
+.news p{font-size:11px;color:#999;line-height:1.8}
+footer{
+margin-top:90px;padding:45px 6%;text-align:center;
+background:#090909;border-top:1px solid var(--line)
 }
-
-.hero h1 span { color:var(--gold); }
-
-.hero p {
-  color:#b9b9b9;
-  line-height:1.7;
-  font-size:14px;
-  max-width:420px;
+footer strong{font-size:25px;color:var(--gold)}
+footer p{font-size:10px;color:#777;margin-top:15px;line-height:1.8}
+@media(max-width:850px){
+nav{gap:12px}nav a{font-size:9px}
+.games{grid-template-columns:repeat(2,1fr)}
 }
-
-.hero-btn {
-  margin-top:25px;
-  background:linear-gradient(135deg,#f6d78c,#b78a36);
-  border:0;
-  padding:14px 25px;
-  border-radius:5px;
-  font-weight:900;
-  color:#18130a;
-  letter-spacing:1px;
-}
-
-.section-head {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin:35px 0 20px;
-}
-
-.section-head h2 {
-  font-size:19px;
-  font-weight:800;
-}
-
-.section-head h2 span { color:var(--gold); }
-
-.section-head small {
-  color:var(--muted);
-  font-size:11px;
-}
-
-.games {
-  display:grid;
-  grid-template-columns:repeat(4,minmax(0,1fr));
-  gap:17px;
-}
-
-.game {
-  position:relative;
-  min-height:190px;
-  overflow:hidden;
-  border-radius:12px;
-  border:1px solid var(--border);
-  background:linear-gradient(145deg,#20212a,#101116);
-  transition:.25s;
-  cursor:pointer;
-}
-
-.game:hover {
-  transform:translateY(-5px);
-  border-color:var(--gold);
-  box-shadow:0 12px 35px #0009;
-}
-
-.game-art {
-  height:130px;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:67px;
-  background:radial-gradient(circle,rgba(214,174,82,.19),transparent 65%);
-}
-
-.game-info {
-  background:rgba(0,0,0,.35);
-  padding:13px;
-}
-
-.game-info strong { font-size:13px; }
-.game-info small {
-  display:block;
-  margin-top:5px;
-  color:#8d8d94;
-  font-size:10px;
-}
-
-.tag {
-  position:absolute;
-  top:12px;
-  left:12px;
-  background:var(--gold);
-  color:#17120a;
-  font-size:9px;
-  padding:5px 8px;
-  font-weight:900;
-  border-radius:3px;
-}
-
-.promo-grid {
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:15px;
-}
-
-.promo {
-  background:linear-gradient(120deg,#211b10,#15161c);
-  border:1px solid var(--border);
-  padding:22px;
-  border-radius:10px;
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
-
-.promo-icon { font-size:36px; }
-
-.promo h3 {
-  font-size:14px;
-  margin-bottom:7px;
-  color:var(--gold2);
-}
-
-.promo p {
-  font-size:11px;
-  color:#999;
-  line-height:1.5;
-}
-
-.activity {
-  background:var(--panel);
-  border:1px solid var(--border);
-  border-radius:10px;
-  overflow:hidden;
-  margin-bottom:30px;
-}
-
-.activity-row {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:15px 18px;
-  border-bottom:1px solid #ffffff0b;
-  font-size:12px;
-}
-
-.activity-row:last-child { border:0; }
-
-.activity-row span:last-child {
-  color:var(--gold2);
-  font-weight:800;
-}
-
-.demo-note {
-  font-size:10px;
-  color:#858994;
-  text-align:center;
-  padding:12px;
-  line-height:1.6;
-}
-
-footer {
-  text-align:center;
-  padding:28px;
-  border-top:1px solid var(--border);
-  color:#777;
-  font-size:11px;
-  line-height:2;
-}
-
-.mobile-menu { display:none; }
-
-.modal-bg {
-  display:none;
-  position:fixed;
-  inset:0;
-  z-index:100;
-  background:#000d;
-  justify-content:center;
-  align-items:center;
-  padding:20px;
-}
-
-.modal {
-  width:100%;
-  max-width:400px;
-  background:#14151b;
-  border:1px solid var(--gold);
-  border-radius:13px;
-  padding:28px;
-  text-align:center;
-  position:relative;
-}
-
-.modal h2 {
-  color:var(--gold2);
-  font-family:Orbitron,sans-serif;
-  font-size:20px;
-  margin-bottom:15px;
-}
-
-.modal p {
-  color:#aaa;
-  font-size:13px;
-  line-height:1.7;
-}
-
-.close {
-  position:absolute;
-  right:15px;
-  top:12px;
-  background:none;
-  border:0;
-  color:white;
-  font-size:22px;
-}
-
-@media(max-width:950px) {
-  .games { grid-template-columns:repeat(2,1fr); }
-}
-
-@media(max-width:650px) {
-  header { padding:0 16px; height:65px; }
-  .logo { font-size:19px; }
-  .balance { padding:9px; font-size:10px; }
-  .login { padding:10px; font-size:10px; }
-  .layout { display:block; }
-  .sidebar {
-    display:none;
-    position:fixed;
-    z-index:30;
-    top:65px;
-    bottom:0;
-    left:0;
-    width:240px;
-    box-shadow:20px 0 50px #000;
-  }
-  .sidebar.open { display:block; }
-  .mobile-menu {
-    display:block;
-    border:0;
-    background:none;
-    color:var(--gold);
-    font-size:23px;
-  }
-  main { padding:20px 15px; }
-  .hero { padding:30px 22px; min-height:280px; }
-  .hero:after { right:0; font-size:120px; }
-  .hero p { max-width:260px; }
-  .games { gap:10px; }
-  .game { min-height:160px; }
-  .game-art { height:105px; font-size:50px; }
-  .promo-grid { grid-template-columns:1fr; }
-  .section-head { margin-top:28px; }
+@media(max-width:650px){
+header{height:70px;padding:0 12px}
+.brand img{width:48px;height:48px}
+.brand strong{font-size:22px}
+nav{display:none}
+.hero{grid-template-columns:1fr;text-align:center;padding:65px 20px 35px}
+.hero h1{font-size:75px}
+.hero p{margin:25px auto}
+.hero-actions{justify-content:center}
+.logo-display{min-height:300px;margin-top:20px}
+.logo-display img{width:280px;height:280px}
+.logo-display:before{width:250px;height:250px}
+main{padding:0 16px}
+h2{font-size:35px}
+.games{gap:10px}
+.game-art{height:140px}
+.game-art span{font-size:55px}
+.vip{padding:30px 20px}
+.vip h2{font-size:38px}
+.seal{width:75px;height:75px;font-size:25px;flex-shrink:0}
+.community,.news{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -428,211 +169,122 @@ footer {
 <body>
 
 <header>
-  <button class="mobile-menu" onclick="toggleMenu()">☰</button>
-
-  <div class="logo">TIRRI<span>BET</span></div>
-
-  <div class="header-right">
-    <div class="balance">♛ 10.000 CRÉDITOS DEMO</div>
-    <button class="login" onclick="openModal('Acceso VIP')">
-      MI CUENTA
-    </button>
-  </div>
+<a class="brand" href="#">
+<img src="tirribet-logo.png" alt="TB">
+<strong>TIRRI<span>BET</span></strong>
+</a>
+<nav>
+<a href="#inicio">INICIO</a>
+<a href="#juegos">EXPERIENCIAS</a>
+<a href="#vip">VIP CLUB</a>
+<a href="#comunidad">COMUNIDAD</a>
+<a href="#novedades">NOVEDADES</a>
+</nav>
+<button class="btn" onclick="document.getElementById('juegos').scrollIntoView({behavior:'smooth'})">EXPLORAR</button>
 </header>
 
-<div class="layout">
-
-<aside class="sidebar" id="sidebar">
-
-  <div class="side-title">MENÚ PRINCIPAL</div>
-
-  <div class="nav-item active" onclick="goTo('inicio')">♛ Inicio</div>
-  <div class="nav-item" onclick="goTo('juegos')">🎰 Juegos</div>
-  <div class="nav-item" onclick="openModal('Torneos')">🏆 Torneos</div>
-  <div class="nav-item" onclick="openModal('VIP CLUB')">💎 VIP Club</div>
-
-  <div class="side-title">EXPERIENCIA</div>
-
-  <div class="nav-item" onclick="goTo('promos')">🎁 Promociones</div>
-  <div class="nav-item" onclick="goTo('actividad')">📊 Actividad</div>
-  <div class="nav-item" onclick="openModal('Comunidad')">👑 Comunidad</div>
-
-  <div class="side-title">INFORMACIÓN</div>
-  <div class="nav-item" onclick="openModal('Sobre TirriBet')">ℹ Sobre nosotros</div>
-
-</aside>
-
-<main id="inicio">
-
-<section class="hero">
-  <div class="hero-content">
-    <div class="eyebrow">BIENVENIDO AL CLUB EXCLUSIVO</div>
-
-    <h1>THE <span>TIRRI</span><br>EXPERIENCE</h1>
-
-    <p>
-      Una nueva experiencia de entretenimiento.
-      Entra al universo TirriBet y descubre
-      nuestro exclusivo mundo VIP.
-    </p>
-
-    <button class="hero-btn" onclick="goTo('juegos')">
-      EXPLORAR EXPERIENCIA →
-    </button>
-  </div>
+<section class="hero" id="inicio">
+<div>
+<div class="kicker">EXCLUSIVIDAD · ENTRETENIMIENTO · COMUNIDAD</div>
+<h1>THE <span>TIRRI</span> EXPERIENCE</h1>
+<p>Bienvenido a un universo diferente. Descubre TirriBet, una experiencia premium inspirada en la identidad y comunidad de EL TIRRI.</p>
+<div class="hero-actions">
+<button class="btn" onclick="document.getElementById('juegos').scrollIntoView({behavior:'smooth'})">DESCUBRIR EXPERIENCIAS →</button>
+<button class="btn-outline" onclick="document.getElementById('vip').scrollIntoView({behavior:'smooth'})">ROYAL CLUB</button>
+</div>
+</div>
+<div class="logo-display">
+<img src="tirribet-logo.png" alt="Emblema oficial TirriBet">
+</div>
 </section>
 
-<div class="section-head" id="juegos">
-  <h2>JUEGOS <span>DESTACADOS</span></h2>
-  <small>EXPLORA EL UNIVERSO TIRRIBET</small>
+<div class="marquee">♛ <span>TIRRIBET ROYAL CLUB</span> · EL UNIVERSO TIRRIANO · <span>THE ROYAL EXPERIENCE</span> ♛</div>
+
+<main>
+<section class="content" id="juegos">
+<div class="label">DESCUBRE NUESTRO UNIVERSO</div>
+<h2>EXPERIENCIAS <span class="gold">DESTACADAS</span></h2>
+<p class="subtitle">Explora las experiencias de entretenimiento TirriBet.</p>
+
+<div class="categories">
+<button class="category active" onclick="filterGames('all',this)">TODAS</button>
+<button class="category" onclick="filterGames('slots',this)">SLOTS</button>
+<button class="category" onclick="filterGames('classic',this)">CLÁSICOS</button>
+<button class="category" onclick="filterGames('special',this)">ESPECIALES</button>
 </div>
 
-<section class="games">
-
-  <article class="game" onclick="openModal('Tirri Slots')">
-    <span class="tag">DESTACADO</span>
-    <div class="game-art">🎰</div>
-    <div class="game-info">
-      <strong>TIRRI SLOTS</strong>
-      <small>Máquinas de demostración</small>
-    </div>
-  </article>
-
-  <article class="game" onclick="openModal('Lucky 7')">
-    <div class="game-art">🍀</div>
-    <div class="game-info">
-      <strong>LUCKY 7</strong>
-      <small>Próximamente</small>
-    </div>
-  </article>
-
-  <article class="game" onclick="openModal('Royal Cards')">
-    <div class="game-art">🃏</div>
-    <div class="game-info">
-      <strong>ROYAL CARDS</strong>
-      <small>Próximamente</small>
-    </div>
-  </article>
-
-  <article class="game" onclick="openModal('Golden Wheel')">
-    <span class="tag">NUEVO</span>
-    <div class="game-art">🎡</div>
-    <div class="game-info">
-      <strong>GOLDEN WHEEL</strong>
-      <small>Próximamente</small>
-    </div>
-  </article>
-
-</section>
-
-<div class="section-head" id="promos">
-  <h2>EL CLUB <span>VIP</span></h2>
-  <small>EXCLUSIVIDAD TIRRIBET</small>
+<div class="games">
+<div class="game" data-type="slots" onclick="alert('Tirri Slots: próximamente')">
+<div class="game-art"><span>🎰</span></div>
+<div class="game-info"><strong>TIRRI SLOTS</strong><p>Experiencia de demostración</p></div>
 </div>
-
-<section class="promo-grid">
-
-  <article class="promo">
-    <div class="promo-icon">👑</div>
-    <div>
-      <h3>ROYAL MEMBERS</h3>
-      <p>Descubre el universo y las novedades de nuestra comunidad.</p>
-    </div>
-  </article>
-
-  <article class="promo">
-    <div class="promo-icon">🎁</div>
-    <div>
-      <h3>EXPERIENCIAS ESPECIALES</h3>
-      <p>Entérate de las actividades y eventos de TirriBet.</p>
-    </div>
-  </article>
-
-</section>
-
-<div class="section-head" id="actividad">
-  <h2>MURO <span>DE ACTIVIDAD</span></h2>
-  <small>DATOS DE EJEMPLO</small>
+<div class="game" data-type="classic" onclick="alert('Royal Cards: próximamente')">
+<div class="game-art"><span>♠️</span></div>
+<div class="game-info"><strong>ROYAL CARDS</strong><p>Próximamente</p></div>
 </div>
-
-<section class="activity">
-
-  <div class="activity-row">
-    <span>👑 Comunidad TirriBet</span>
-    <span>VIP</span>
-  </div>
-
-  <div class="activity-row">
-    <span>🎰 Nuevos juegos</span>
-    <span>PRÓXIMAMENTE</span>
-  </div>
-
-  <div class="activity-row">
-    <span>🏆 Eventos especiales</span>
-    <span>EN PREPARACIÓN</span>
-  </div>
-
+<div class="game" data-type="special" onclick="alert('Golden Wheel: próximamente')">
+<div class="game-art"><span>🎡</span></div>
+<div class="game-info"><strong>GOLDEN WHEEL</strong><p>Próximamente</p></div>
+</div>
+<div class="game" data-type="slots" onclick="alert('Lucky Seven: próximamente')">
+<div class="game-art"><span>🍀</span></div>
+<div class="game-info"><strong>LUCKY SEVEN</strong><p>Próximamente</p></div>
+</div>
+</div>
 </section>
 
-<p class="demo-note">
-  Plataforma de demostración. Los créditos son ficticios,
-  no tienen valor monetario ni pueden canjearse o retirarse.
-  No representa resultados, premios ni ganadores reales.
-</p>
+<section class="vip" id="vip">
+<div>
+<div class="label">EL SIGUIENTE NIVEL</div>
+<h2>WELCOME TO THE<br><span class="gold">ROYAL CLUB</span></h2>
+<p>Un espacio especial para nuestra comunidad, con novedades, actividades y experiencias exclusivas.</p>
+<button class="btn" onclick="alert('Royal Club: próximamente')">DESCUBRIR EL CLUB →</button>
+</div>
+<div class="seal">TB</div>
+</section>
 
+<section class="content" id="comunidad">
+<div class="label">UNA COMUNIDAD DIFERENTE</div>
+<h2>EL MUNDO <span class="gold">TIRRIANO</span></h2>
+<div class="community">
+<article>
+<h3>LA COMUNIDAD <span class="gold">PRIMERO</span></h3>
+<p>Un punto de encuentro para los Tirrianos. Descubre novedades y actividades de nuestra comunidad.</p>
+<button class="btn" onclick="alert('Próximamente')">EXPLORAR COMUNIDAD</button>
+</article>
+<article>
+<h3>EL TIRRI <span class="gold">OFFICIAL</span></h3>
+<p>El entretenimiento, la identidad y la comunidad que dan vida a este universo.</p>
+<button class="btn-outline" onclick="window.open('https://kick.com/eltirriok','_blank')">VISITAR KICK</button>
+</article>
+</div>
+</section>
+
+<section class="content" id="novedades">
+<div class="label">SIEMPRE HAY ALGO NUEVO</div>
+<h2>ÚLTIMAS <span class="gold">NOVEDADES</span></h2>
+<div class="news">
+<article><h3>ROYAL CLUB</h3><p>Estamos preparando novedades para nuestra experiencia VIP.</p></article>
+<article><h3>NUEVAS EXPERIENCIAS</h3><p>Seguimos trabajando en nuevas propuestas de entretenimiento.</p></article>
+<article><h3>COMUNIDAD TIRRIANA</h3><p>Un universo construido alrededor de nuestra comunidad.</p></article>
+</div>
+</section>
 </main>
-</div>
 
 <footer>
-  <div class="logo">TIRRIBET</div>
-  <p>THE TIRRI EXPERIENCE</p>
-  <p>© 2026 TIRRIBET · TODOS LOS DERECHOS RESERVADOS</p>
+<strong>TIRRIBET · ROYAL EXPERIENCE</strong>
+<p>© 2026 TIRRIBET · THE TIRRI EXPERIENCE<br>
+Plataforma de demostración. No se realizan apuestas con dinero real.</p>
 </footer>
 
-<div class="modal-bg" id="modal-bg" onclick="closeOutside(event)">
-  <div class="modal">
-    <button class="close" onclick="closeModal()">×</button>
-    <h2 id="modal-title">TIRRIBET</h2>
-    <p id="modal-text">
-      Bienvenido a la experiencia TirriBet.
-    </p>
-    <button class="hero-btn" onclick="closeModal()">ENTENDIDO</button>
-  </div>
-</div>
-
 <script>
-
-function toggleMenu() {
-  document.getElementById('sidebar').classList.toggle('open');
+function filterGames(type,button){
+document.querySelectorAll('.category').forEach(b=>b.classList.remove('active'));
+button.classList.add('active');
+document.querySelectorAll('.game').forEach(game=>{
+game.style.display=(type==='all'||game.dataset.type===type)?'block':'none';
+});
 }
-
-function goTo(id) {
-  document.getElementById(id).scrollIntoView({
-    behavior:'smooth'
-  });
-
-  document.getElementById('sidebar').classList.remove('open');
-}
-
-function openModal(title) {
-  document.getElementById('modal-title').textContent = title;
-
-  document.getElementById('modal-text').textContent =
-    title === 'Tirri Slots'
-    ? 'El módulo de juegos de demostración se encuentra en desarrollo.'
-    : 'Estamos preparando nuevas experiencias para la comunidad TirriBet.';
-
-  document.getElementById('modal-bg').style.display = 'flex';
-}
-
-function closeModal() {
-  document.getElementById('modal-bg').style.display = 'none';
-}
-
-function closeOutside(event) {
-  if(event.target.id === 'modal-bg') closeModal();
-}
-
 </script>
 
 </body>
