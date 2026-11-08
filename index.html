@@ -9,6 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+  .game-art video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+  }
 :root{
 --gold:#d8b66b;
 --light:#f5dfaa;
@@ -248,7 +254,9 @@ h2{font-size:35px}
 
 <div class="game" data-type="slots" onclick="alert('Tirri Slots: próximamente')">
 <div class="game-art">
-<img src="gemini_generated_video_82bad8f2.mp4" alt="Tirri Slots">
+  <video autoplay muted loop playsinline>
+    <source src="mi-video.mp4" type="video/mp4">
+  </video>
 </div>
 <div class="game-info"><strong>TIRRI SLOTS</strong><p>Experiencia de demostración</p></div>
 </div>
@@ -314,6 +322,8 @@ document.querySelectorAll('.game').forEach(game=>{
 game.style.display=(type==='all'||game.dataset.type===type)?'block':'none';
 });
 }
+
+
 </script>
 
 </body>
