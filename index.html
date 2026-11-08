@@ -1,746 +1,639 @@
-```html
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Royale Casino Pro - Next Gen Gaming</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Inter & Cinzel -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Cinzel', 'serif'],
-                    },
-                    colors: {
-                        casino: {
-                            dark: '#07090e',
-                            card: '#121622',
-                            border: '#1f2638',
-                            gold: '#f59e0b',
-                            goldLight: '#fbbf24',
-                            neon: '#06b6d4'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #07090e;
-            color: #f1f5f9;
-        }
-        .gold-gradient {
-            background: linear-gradient(135deg, #bf953f 0%, #fc6 25%, #b38728 50%, #fbf5b7 75%, #aa771c 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .gold-btn {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-            transition: all 0.3s ease;
-        }
-        .gold-btn:hover {
-            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
-        }
-        .neon-glow {
-            box-shadow: 0 0 25px rgba(6, 182, 212, 0.15);
-        }
-        @keyframes spin-wheel {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(1800deg); }
-        }
-        .animate-spin-wheel {
-            animation: spin-wheel 3s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090909">
+<title>TirriBet | VIP Casino Experience</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@600;700;800;900&display=swap');
+
+:root {
+  --gold: #d6ae52;
+  --gold2: #ffdf91;
+  --bg: #08090c;
+  --panel: #111319;
+  --muted: #858994;
+  --border: rgba(214,174,82,.19);
+}
+
+* { box-sizing:border-box; margin:0; padding:0; }
+
+body {
+  background:var(--bg);
+  color:#fff;
+  font-family:Inter,sans-serif;
+  min-height:100vh;
+}
+
+button { cursor:pointer; font-family:inherit; }
+
+header {
+  height:76px;
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(8,9,12,.96);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 5%;
+}
+
+.logo {
+  font-family:Orbitron,sans-serif;
+  font-size:25px;
+  font-weight:900;
+  letter-spacing:2px;
+  color:var(--gold);
+  text-shadow:0 0 18px rgba(214,174,82,.3);
+}
+
+.logo span { color:white; }
+
+.header-right {
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+.balance {
+  background:#17181c;
+  border:1px solid var(--border);
+  padding:10px 16px;
+  border-radius:8px;
+  color:var(--gold2);
+  font-weight:800;
+  font-size:13px;
+}
+
+.login {
+  background:linear-gradient(135deg,#f6d78c,#b78a36);
+  border:0;
+  border-radius:7px;
+  padding:12px 20px;
+  color:#17120a;
+  font-weight:900;
+}
+
+.layout {
+  display:grid;
+  grid-template-columns:220px 1fr;
+  min-height:calc(100vh - 76px);
+}
+
+.sidebar {
+  background:#0c0d11;
+  border-right:1px solid var(--border);
+  padding:30px 16px;
+}
+
+.side-title {
+  color:#777;
+  font-size:10px;
+  letter-spacing:2px;
+  font-weight:800;
+  margin:18px 12px 12px;
+}
+
+.nav-item {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:14px;
+  border-radius:8px;
+  color:#a5a6ac;
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:5px;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.nav-item:hover,.nav-item.active {
+  background:linear-gradient(90deg,rgba(214,174,82,.17),transparent);
+  color:var(--gold2);
+  border-left:3px solid var(--gold);
+}
+
+main {
+  padding:30px 4%;
+  max-width:1600px;
+  width:100%;
+  margin:auto;
+}
+
+.hero {
+  min-height:300px;
+  border-radius:15px;
+  overflow:hidden;
+  position:relative;
+  display:flex;
+  align-items:center;
+  padding:45px;
+  background:
+    radial-gradient(ellipse at 80% 50%,rgba(174,123,35,.3),transparent 55%),
+    linear-gradient(110deg,#17130c,#17191d 65%,#292012);
+  border:1px solid rgba(214,174,82,.32);
+  box-shadow:0 15px 60px #0008;
+}
+
+.hero:after {
+  content:"♛";
+  position:absolute;
+  right:9%;
+  top:50%;
+  transform:translateY(-50%);
+  font-size:190px;
+  color:rgba(221,181,93,.14);
+  text-shadow:0 0 50px rgba(214,174,82,.3);
+}
+
+.hero-content { position:relative; z-index:2; max-width:550px; }
+
+.eyebrow {
+  color:var(--gold2);
+  font-size:11px;
+  letter-spacing:4px;
+  font-weight:800;
+  margin-bottom:18px;
+}
+
+.hero h1 {
+  font-family:Orbitron,sans-serif;
+  font-size:clamp(30px,5vw,53px);
+  line-height:1.15;
+  margin-bottom:15px;
+}
+
+.hero h1 span { color:var(--gold); }
+
+.hero p {
+  color:#b9b9b9;
+  line-height:1.7;
+  font-size:14px;
+  max-width:420px;
+}
+
+.hero-btn {
+  margin-top:25px;
+  background:linear-gradient(135deg,#f6d78c,#b78a36);
+  border:0;
+  padding:14px 25px;
+  border-radius:5px;
+  font-weight:900;
+  color:#18130a;
+  letter-spacing:1px;
+}
+
+.section-head {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin:35px 0 20px;
+}
+
+.section-head h2 {
+  font-size:19px;
+  font-weight:800;
+}
+
+.section-head h2 span { color:var(--gold); }
+
+.section-head small {
+  color:var(--muted);
+  font-size:11px;
+}
+
+.games {
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:17px;
+}
+
+.game {
+  position:relative;
+  min-height:190px;
+  overflow:hidden;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:linear-gradient(145deg,#20212a,#101116);
+  transition:.25s;
+  cursor:pointer;
+}
+
+.game:hover {
+  transform:translateY(-5px);
+  border-color:var(--gold);
+  box-shadow:0 12px 35px #0009;
+}
+
+.game-art {
+  height:130px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:67px;
+  background:radial-gradient(circle,rgba(214,174,82,.19),transparent 65%);
+}
+
+.game-info {
+  background:rgba(0,0,0,.35);
+  padding:13px;
+}
+
+.game-info strong { font-size:13px; }
+.game-info small {
+  display:block;
+  margin-top:5px;
+  color:#8d8d94;
+  font-size:10px;
+}
+
+.tag {
+  position:absolute;
+  top:12px;
+  left:12px;
+  background:var(--gold);
+  color:#17120a;
+  font-size:9px;
+  padding:5px 8px;
+  font-weight:900;
+  border-radius:3px;
+}
+
+.promo-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:15px;
+}
+
+.promo {
+  background:linear-gradient(120deg,#211b10,#15161c);
+  border:1px solid var(--border);
+  padding:22px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.promo-icon { font-size:36px; }
+
+.promo h3 {
+  font-size:14px;
+  margin-bottom:7px;
+  color:var(--gold2);
+}
+
+.promo p {
+  font-size:11px;
+  color:#999;
+  line-height:1.5;
+}
+
+.activity {
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:10px;
+  overflow:hidden;
+  margin-bottom:30px;
+}
+
+.activity-row {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:15px 18px;
+  border-bottom:1px solid #ffffff0b;
+  font-size:12px;
+}
+
+.activity-row:last-child { border:0; }
+
+.activity-row span:last-child {
+  color:var(--gold2);
+  font-weight:800;
+}
+
+.demo-note {
+  font-size:10px;
+  color:#858994;
+  text-align:center;
+  padding:12px;
+  line-height:1.6;
+}
+
+footer {
+  text-align:center;
+  padding:28px;
+  border-top:1px solid var(--border);
+  color:#777;
+  font-size:11px;
+  line-height:2;
+}
+
+.mobile-menu { display:none; }
+
+.modal-bg {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:100;
+  background:#000d;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.modal {
+  width:100%;
+  max-width:400px;
+  background:#14151b;
+  border:1px solid var(--gold);
+  border-radius:13px;
+  padding:28px;
+  text-align:center;
+  position:relative;
+}
+
+.modal h2 {
+  color:var(--gold2);
+  font-family:Orbitron,sans-serif;
+  font-size:20px;
+  margin-bottom:15px;
+}
+
+.modal p {
+  color:#aaa;
+  font-size:13px;
+  line-height:1.7;
+}
+
+.close {
+  position:absolute;
+  right:15px;
+  top:12px;
+  background:none;
+  border:0;
+  color:white;
+  font-size:22px;
+}
+
+@media(max-width:950px) {
+  .games { grid-template-columns:repeat(2,1fr); }
+}
+
+@media(max-width:650px) {
+  header { padding:0 16px; height:65px; }
+  .logo { font-size:19px; }
+  .balance { padding:9px; font-size:10px; }
+  .login { padding:10px; font-size:10px; }
+  .layout { display:block; }
+  .sidebar {
+    display:none;
+    position:fixed;
+    z-index:30;
+    top:65px;
+    bottom:0;
+    left:0;
+    width:240px;
+    box-shadow:20px 0 50px #000;
+  }
+  .sidebar.open { display:block; }
+  .mobile-menu {
+    display:block;
+    border:0;
+    background:none;
+    color:var(--gold);
+    font-size:23px;
+  }
+  main { padding:20px 15px; }
+  .hero { padding:30px 22px; min-height:280px; }
+  .hero:after { right:0; font-size:120px; }
+  .hero p { max-width:260px; }
+  .games { gap:10px; }
+  .game { min-height:160px; }
+  .game-art { height:105px; font-size:50px; }
+  .promo-grid { grid-template-columns:1fr; }
+  .section-head { margin-top:28px; }
+}
+</style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-amber-500 selection:text-black">
 
-    <!-- Modal Personalizado (Reemplazo de alert) -->
-    <div id="custom-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md hidden">
-        <div class="bg-casino-card border border-amber-500/40 rounded-3xl p-6 max-w-sm w-full mx-4 shadow-2xl text-center">
-            <div id="modal-icon" class="text-4xl mb-3">🎰</div>
-            <h3 id="modal-title" class="font-serif text-xl font-bold text-amber-400 mb-2">¡Aviso!</h3>
-            <p id="modal-message" class="text-slate-300 text-sm mb-6">Mensaje descriptivo aquí.</p>
-            <button onclick="closeModal()" class="w-full py-3 rounded-xl gold-btn font-bold text-slate-950 cursor-pointer shadow-lg">Entendido</button>
-        </div>
+<body>
+
+<header>
+  <button class="mobile-menu" onclick="toggleMenu()">☰</button>
+
+  <div class="logo">TIRRI<span>BET</span></div>
+
+  <div class="header-right">
+    <div class="balance">♛ 10.000 CRÉDITOS DEMO</div>
+    <button class="login" onclick="openModal('Acceso VIP')">
+      MI CUENTA
+    </button>
+  </div>
+</header>
+
+<div class="layout">
+
+<aside class="sidebar" id="sidebar">
+
+  <div class="side-title">MENÚ PRINCIPAL</div>
+
+  <div class="nav-item active" onclick="goTo('inicio')">♛ Inicio</div>
+  <div class="nav-item" onclick="goTo('juegos')">🎰 Juegos</div>
+  <div class="nav-item" onclick="openModal('Torneos')">🏆 Torneos</div>
+  <div class="nav-item" onclick="openModal('VIP CLUB')">💎 VIP Club</div>
+
+  <div class="side-title">EXPERIENCIA</div>
+
+  <div class="nav-item" onclick="goTo('promos')">🎁 Promociones</div>
+  <div class="nav-item" onclick="goTo('actividad')">📊 Actividad</div>
+  <div class="nav-item" onclick="openModal('Comunidad')">👑 Comunidad</div>
+
+  <div class="side-title">INFORMACIÓN</div>
+  <div class="nav-item" onclick="openModal('Sobre TirriBet')">ℹ Sobre nosotros</div>
+
+</aside>
+
+<main id="inicio">
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="eyebrow">BIENVENIDO AL CLUB EXCLUSIVO</div>
+
+    <h1>THE <span>TIRRI</span><br>EXPERIENCE</h1>
+
+    <p>
+      Una nueva experiencia de entretenimiento.
+      Entra al universo TirriBet y descubre
+      nuestro exclusivo mundo VIP.
+    </p>
+
+    <button class="hero-btn" onclick="goTo('juegos')">
+      EXPLORAR EXPERIENCIA →
+    </button>
+  </div>
+</section>
+
+<div class="section-head" id="juegos">
+  <h2>JUEGOS <span>DESTACADOS</span></h2>
+  <small>EXPLORA EL UNIVERSO TIRRIBET</small>
+</div>
+
+<section class="games">
+
+  <article class="game" onclick="openModal('Tirri Slots')">
+    <span class="tag">DESTACADO</span>
+    <div class="game-art">🎰</div>
+    <div class="game-info">
+      <strong>TIRRI SLOTS</strong>
+      <small>Máquinas de demostración</small>
     </div>
+  </article>
 
-    <!-- Barra de Navegación PRO -->
-    <header class="border-b border-casino-border bg-casino-card/90 backdrop-blur sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-11 h-11 rounded-2xl gold-btn flex items-center justify-center text-slate-950 font-serif font-bold text-xl shadow-lg">
-                    <i class="fa-solid fa-crown"></i>
-                </div>
-                <div>
-                    <h1 class="font-serif text-2xl font-extrabold gold-gradient tracking-wider">ROYALE PRO</h1>
-                    <p class="text-[10px] text-cyan-400 tracking-widest uppercase font-semibold">VIP Casino & Lounge</p>
-                </div>
-            </div>
-
-            <!-- Panel de Saldo y Perfil -->
-            <div class="flex items-center space-x-4">
-                <div class="bg-slate-900/90 border border-casino-border rounded-2xl px-4 py-2.5 flex items-center space-x-3 shadow-inner">
-                    <span class="text-xs text-slate-400 uppercase font-semibold hidden sm:inline">Saldo:</span>
-                    <span id="user-balance" class="font-bold text-amber-400 text-lg">$1,500.00</span>
-                    <button onclick="openDepositModal()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 px-3 py-1.5 rounded-xl text-xs font-bold transition cursor-pointer border border-amber-500/30 flex items-center space-x-1 shadow">
-                        <i class="fa-solid fa-plus text-[10px]"></i> <span>Recargar</span>
-                    </button>
-                </div>
-
-                <div class="hidden md:flex items-center space-x-2 bg-slate-900/60 border border-casino-border rounded-2xl p-1.5 px-3">
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-amber-200 flex items-center justify-center text-slate-950 font-bold text-sm">
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-                    <span class="text-xs font-semibold text-slate-300">VIP Player</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Barra de Categorías / Filtros -->
-    <nav class="bg-casino-card/40 border-b border-casino-border">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-2 sm:space-x-6 overflow-x-auto py-3 no-scrollbar">
-            <button onclick="switchTab('lobby')" id="tab-btn-lobby" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer flex items-center space-x-2 bg-amber-500 text-slate-950 shadow-md whitespace-nowrap">
-                <i class="fa-solid fa-fire"></i> <span>Todos los Juegos</span>
-            </button>
-            <button onclick="switchTab('slots')" id="tab-btn-slots" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer flex items-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800/60 whitespace-nowrap">
-                <i class="fa-solid fa-dice"></i> <span>Tragamonedas</span>
-            </button>
-            <button onclick="switchTab('roulette')" id="tab-btn-roulette" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer flex items-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800/60 whitespace-nowrap">
-                <i class="fa-solid fa-circle-notch"></i> <span>Ruleta</span>
-            </button>
-            <button onclick="switchTab('blackjack')" id="tab-btn-blackjack" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer flex items-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800/60 whitespace-nowrap">
-                <i class="fa-solid fa-diamond"></i> <span>Blackjack</span>
-            </button>
-            <button onclick="switchTab('history')" id="tab-btn-history" class="tab-btn px-4 py-2.5 rounded-xl text-sm font-semibold transition cursor-pointer flex items-center space-x-2 text-slate-400 hover:text-white hover:bg-slate-800/60 whitespace-nowrap">
-                <i class="fa-solid fa-chart-line"></i> <span>Historial</span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Contenido Principal -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 sm:p-6 lg:p-8 space-y-8">
-
-        <!-- ================= VISTA: LOBBY / DESTACADOS ================= -->
-        <div id="tab-lobby" class="game-view space-y-8">
-            <!-- Banner de Bienvenida Dinámico -->
-            <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-amber-950/40 via-slate-900 to-cyan-950/40 border border-amber-500/30 p-8 sm:p-12 shadow-2xl neon-glow">
-                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl text-amber-400 font-serif">
-                    <i class="fa-solid fa-trophy"></i>
-                </div>
-                <div class="max-w-xl space-y-4 relative z-10">
-                    <span class="bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/30 uppercase tracking-widest">Bono de Bienvenida 100%</span>
-                    <h2 class="font-serif text-3xl sm:text-4xl font-extrabold text-white leading-tight">Multiplica tus ganancias en el Casino VIP</h2>
-                    <p class="text-slate-300 text-sm sm:text-base">Disfruta de nuestros juegos certificados con jackpots instantáneos, ruleta europea en vivo y mesas profesionales de blackjack.</p>
-                    <div class="pt-2 flex flex-wrap gap-4">
-                        <button onclick="switchTab('slots')" class="px-6 py-3 rounded-xl gold-btn font-bold text-slate-950 text-sm shadow-lg cursor-pointer">
-                            <i class="fa-solid fa-play mr-2"></i> Jugar Tragamonedas
-                        </button>
-                        <button onclick="openDepositModal()" class="px-6 py-3 rounded-xl bg-slate-800/80 hover:bg-slate-800 font-semibold text-slate-200 border border-slate-700 text-sm transition cursor-pointer">
-                            <i class="fa-solid fa-wallet mr-2"></i> Depositar Fondos
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Grid de Juegos Destacados -->
-            <div>
-                <h3 class="font-serif text-xl font-bold text-white mb-4 flex items-center space-x-2">
-                    <i class="fa-solid fa-fire text-amber-500"></i> <span>Juegos Populares</span>
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Card Slots -->
-                    <div onclick="switchTab('slots')" class="bg-casino-card border border-casino-border rounded-2xl p-6 hover:border-amber-500/50 transition-all duration-300 cursor-pointer group shadow-xl">
-                        <div class="h-40 bg-gradient-to-br from-amber-950/30 to-slate-900 rounded-xl mb-4 flex items-center justify-center text-6xl group-hover:scale-105 transition duration-300">
-                            🎰
-                        </div>
-                        <h4 class="font-bold text-lg text-white mb-1">Lucky Diamond Slots</h4>
-                        <p class="text-xs text-slate-400 mb-4">Gira los carretes y consigue combinaciones de hasta 50x.</p>
-                        <div class="flex justify-between items-center text-xs font-semibold text-amber-400">
-                            <span>RTP: 96.5%</span>
-                            <span class="bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-slate-950 transition">Jugar ahora →</span>
-                        </div>
-                    </div>
-
-                    <!-- Card Ruleta -->
-                    <div onclick="switchTab('roulette')" class="bg-casino-card border border-casino-border rounded-2xl p-6 hover:border-amber-500/50 transition-all duration-300 cursor-pointer group shadow-xl">
-                        <div class="h-40 bg-gradient-to-br from-red-950/30 to-slate-900 rounded-xl mb-4 flex items-center justify-center text-6xl group-hover:scale-105 transition duration-300">
-                            🎡
-                        </div>
-                        <h4 class="font-bold text-lg text-white mb-1">Ruleta Europea Royale</h4>
-                        <p class="text-xs text-slate-400 mb-4">Apuesta al rojo, negro, par/impar o números directos.</p>
-                        <div class="flex justify-between items-center text-xs font-semibold text-amber-400">
-                            <span>RTP: 97.3%</span>
-                            <span class="bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-slate-950 transition">Jugar ahora →</span>
-                        </div>
-                    </div>
-
-                    <!-- Card Blackjack -->
-                    <div onclick="switchTab('blackjack')" class="bg-casino-card border border-casino-border rounded-2xl p-6 hover:border-amber-500/50 transition-all duration-300 cursor-pointer group shadow-xl">
-                        <div class="h-40 bg-gradient-to-br from-cyan-950/30 to-slate-900 rounded-xl mb-4 flex items-center justify-center text-6xl group-hover:scale-105 transition duration-300">
-                            🃏
-                        </div>
-                        <h4 class="font-bold text-lg text-white mb-1">Blackjack 21 Pro</h4>
-                        <p class="text-xs text-slate-400 mb-4">Vence al dealer acercándote al codiciado 21.</p>
-                        <div class="flex justify-between items-center text-xs font-semibold text-amber-400">
-                            <span>RTP: 99.1%</span>
-                            <span class="bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/20 group-hover:bg-amber-500 group-hover:text-slate-950 transition">Jugar ahora →</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= VISTA: TRAGAMONEDAS ================= -->
-        <div id="tab-slots" class="game-view hidden space-y-6">
-            <div class="text-center max-w-xl mx-auto mb-6">
-                <h2 class="font-serif text-3xl font-bold text-white mb-2">Lucky Diamond Slots</h2>
-                <p class="text-sm text-slate-400">Alinea 3 símbolos iguales para activar el multiplicador VIP.</p>
-            </div>
-
-            <div class="bg-casino-card border border-casino-border rounded-3xl p-6 sm:p-10 max-w-2xl mx-auto shadow-2xl relative">
-                <div class="bg-slate-950 border-4 border-slate-800 rounded-2xl p-6 mb-8 flex justify-center items-center space-x-4 sm:space-x-6 shadow-inner">
-                    <div id="reel-1" class="w-20 sm:w-28 h-28 sm:h-36 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-4xl sm:text-6xl shadow-lg">🍒</div>
-                    <div id="reel-2" class="w-20 sm:w-28 h-28 sm:h-36 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-4xl sm:text-6xl shadow-lg">🍋</div>
-                    <div id="reel-3" class="w-20 sm:w-28 h-28 sm:h-36 bg-slate-900 border border-slate-800 rounded-xl flex items-center justify-center text-4xl sm:text-6xl shadow-lg">💎</div>
-                </div>
-
-                <div id="slots-message" class="text-center h-8 font-medium text-amber-400 mb-6 text-sm sm:text-base">¡Selecciona tu apuesta y gira los carretes!</div>
-
-                <div class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                    <div class="flex items-center space-x-3 w-full sm:w-auto justify-center">
-                        <span class="text-xs uppercase text-slate-400 font-semibold">Apuesta:</span>
-                        <button onclick="adjustSlotBet(-10)" class="w-9 h-9 rounded-lg bg-slate-800 text-white font-bold hover:bg-slate-700 transition cursor-pointer">-</button>
-                        <span id="slot-bet-amount" class="font-bold text-lg text-white w-16 text-center">$10</span>
-                        <button onclick="adjustSlotBet(10)" class="w-9 h-9 rounded-lg bg-slate-800 text-white font-bold hover:bg-slate-700 transition cursor-pointer">+</button>
-                    </div>
-
-                    <button id="spin-btn" onclick="spinSlots()" class="w-full sm:w-auto px-8 py-3.5 rounded-xl gold-btn font-bold text-slate-950 text-base shadow-lg cursor-pointer">
-                        <i class="fa-solid fa-dice mr-2"></i> ¡GIRAR CARRETES!
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= VISTA: RULETA EUROPEA ================= -->
-        <div id="tab-roulette" class="game-view hidden space-y-6">
-            <div class="text-center max-w-xl mx-auto mb-6">
-                <h2 class="font-serif text-3xl font-bold text-white mb-2">Ruleta Europea Royale</h2>
-                <p class="text-sm text-slate-400">Selecciona tu ficha y haz tu apuesta exterior.</p>
-            </div>
-
-            <div class="bg-casino-card border border-casino-border rounded-3xl p-6 sm:p-8 max-w-4xl mx-auto shadow-2xl">
-                <div class="flex flex-col md:flex-row gap-8 items-center justify-between">
-                    <div class="flex flex-col items-center justify-center bg-slate-950 p-6 rounded-2xl border border-slate-800 w-full md:w-1/3">
-                        <div id="roulette-wheel-box" class="w-36 h-36 rounded-full border-4 border-amber-500/60 bg-gradient-to-tr from-slate-900 via-red-950 to-slate-950 flex items-center justify-center relative shadow-xl transition-all duration-300">
-                            <div class="absolute inset-2 rounded-full border border-dashed border-amber-400/30"></div>
-                            <span id="roulette-result-display" class="font-serif font-extrabold text-3xl text-amber-300">🎯</span>
-                        </div>
-                        <p id="roulette-status" class="mt-4 text-sm text-slate-300 font-medium text-center">Haz tu apuesta en la mesa</p>
-                    </div>
-
-                    <div class="w-full md:w-2/3 space-y-4">
-                        <div class="flex items-center justify-between bg-slate-900/60 p-3 rounded-xl border border-slate-800">
-                            <span class="text-xs text-slate-400 uppercase font-semibold">Ficha:</span>
-                            <div class="flex space-x-2" id="chip-selectors">
-                                <button onclick="selectRouletteChip(5)" class="chip-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-amber-500 text-slate-950 border border-amber-300 cursor-pointer">$5</button>
-                                <button onclick="selectRouletteChip(10)" class="chip-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 border border-slate-700 cursor-pointer">$10</button>
-                                <button onclick="selectRouletteChip(25)" class="chip-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 border border-slate-700 cursor-pointer">$25</button>
-                                <button onclick="selectRouletteChip(50)" class="chip-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 border border-slate-700 cursor-pointer">$50</button>
-                                <button onclick="selectRouletteChip(100)" class="chip-btn px-3 py-1.5 rounded-lg text-xs font-bold bg-slate-800 text-slate-300 border border-slate-700 cursor-pointer">$100</button>
-                            </div>
-                        </div>
-
-                        <div class="bg-slate-900/40 p-3 rounded-xl border border-slate-800 flex justify-between items-center text-sm">
-                            <span class="text-slate-400">Apuesta: <strong id="current-roulette-bet-label" class="text-amber-400">Ninguna</strong></span>
-                            <span class="text-slate-400">Monto: <strong id="current-roulette-amount-label" class="text-white">$0</strong></span>
-                            <button onclick="clearRouletteBet()" class="text-xs text-red-400 hover:underline cursor-pointer">Limpiar</button>
-                        </div>
-
-                        <div class="grid grid-cols-3 gap-2">
-                            <button onclick="setRouletteBet('red', 'Rojo (2x)', 2)" class="py-2.5 bg-red-950/80 hover:bg-red-900 border border-red-800 rounded-xl text-xs font-bold text-red-200 transition cursor-pointer">ROJO (2x)</button>
-                            <button onclick="setRouletteBet('black', 'Negro (2x)', 2)" class="py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl text-xs font-bold text-slate-200 transition cursor-pointer">NEGRO (2x)</button>
-                            <button onclick="setRouletteBet('green', 'Verde / 0 (35x)', 35)" class="py-2.5 bg-emerald-950/80 hover:bg-emerald-900 border border-emerald-800 rounded-xl text-xs font-bold text-emerald-200 transition cursor-pointer">VERDE 0 (35x)</button>
-                        </div>
-                        <div class="grid grid-cols-2 gap-2">
-                            <button onclick="setRouletteBet('even', 'Par (2x)', 2)" class="py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl text-xs font-bold text-slate-200 transition cursor-pointer">PAR (2x)</button>
-                            <button onclick="setRouletteBet('odd', 'Impar (2x)', 2)" class="py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl text-xs font-bold text-slate-200 transition cursor-pointer">IMPAR (2x)</button>
-                        </div>
-
-                        <button id="spin-roulette-btn" onclick="spinRoulette()" class="w-full py-3.5 rounded-xl gold-btn font-bold text-slate-950 text-base shadow-lg cursor-pointer mt-2">
-                            <i class="fa-solid fa-circle-notch mr-2"></i> GIRAR RULETA
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= VISTA: BLACKJACK ================= -->
-        <div id="tab-blackjack" class="game-view hidden space-y-6">
-            <div class="text-center max-w-xl mx-auto mb-4">
-                <h2 class="font-serif text-3xl font-bold text-white mb-2">Blackjack 21 Pro</h2>
-                <p class="text-sm text-slate-400">Consigue el puntaje perfecto sin pasarte de 21.</p>
-            </div>
-
-            <div class="bg-casino-card border border-casino-border rounded-3xl p-6 sm:p-8 max-w-3xl mx-auto shadow-2xl relative space-y-6">
-                <!-- Dealer -->
-                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-xs uppercase font-semibold text-slate-400">Mano del Dealer</span>
-                        <span id="dealer-score" class="font-bold text-amber-400 text-sm">Puntuación: ?</span>
-                    </div>
-                    <div id="dealer-cards" class="flex flex-wrap gap-3 min-h-[90px] items-center">
-                        <div class="bg-slate-900 border border-slate-800 rounded-lg w-14 h-20 flex items-center justify-center text-slate-500 text-xs">🂠</div>
-                    </div>
-                </div>
-
-                <div id="bj-message" class="text-center font-medium text-amber-400 text-sm sm:text-base h-6">Coloca tu apuesta para iniciar</div>
-
-                <!-- Player -->
-                <div class="bg-slate-950 p-4 rounded-2xl border border-slate-800">
-                    <div class="flex justify-between items-center mb-2">
-                        <span class="text-xs uppercase font-semibold text-slate-400">Tu Mano</span>
-                        <span id="player-score" class="font-bold text-amber-400 text-sm">Puntuación: 0</span>
-                    </div>
-                    <div id="player-cards" class="flex flex-wrap gap-3 min-h-[90px] items-center">
-                        <div class="bg-slate-900 border border-slate-800 rounded-lg w-14 h-20 flex items-center justify-center text-slate-500 text-xs">🂠</div>
-                    </div>
-                </div>
-
-                <!-- Controles -->
-                <div id="bj-bet-control" class="flex flex-col sm:flex-row items-center justify-between gap-4 bg-slate-900/60 p-4 rounded-2xl border border-slate-800">
-                    <div class="flex items-center space-x-3 w-full sm:w-auto justify-center">
-                        <span class="text-xs uppercase text-slate-400 font-semibold">Apuesta:</span>
-                        <button onclick="adjustBjBet(-10)" class="w-9 h-9 rounded-lg bg-slate-800 text-white font-bold hover:bg-slate-700 transition cursor-pointer">-</button>
-                        <span id="bj-bet-amount" class="font-bold text-lg text-white w-16 text-center">$20</span>
-                        <button onclick="adjustBjBet(10)" class="w-9 h-9 rounded-lg bg-slate-800 text-white font-bold hover:bg-slate-700 transition cursor-pointer">+</button>
-                    </div>
-                    <button onclick="startBlackjack()" class="w-full sm:w-auto px-8 py-3 rounded-xl gold-btn font-bold text-slate-950 shadow-lg cursor-pointer">
-                        <i class="fa-solid fa-play mr-2"></i> REPARTIR CARTAS
-                    </button>
-                </div>
-
-                <div id="bj-action-controls" class="grid grid-cols-2 gap-4 hidden">
-                    <button onclick="bjHit()" class="py-3 rounded-xl bg-blue-600 hover:bg-blue-500 font-bold text-white transition cursor-pointer shadow-lg">Pedir Carta (Hit)</button>
-                    <button onclick="bjStand()" class="py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 font-bold text-slate-950 transition cursor-pointer shadow-lg">Plantarse (Stand)</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- ================= VISTA: HISTORIAL ================= -->
-        <div id="tab-history" class="game-view hidden space-y-6">
-            <div class="text-center max-w-xl mx-auto mb-6">
-                <h2 class="font-serif text-3xl font-bold text-white mb-2">Historial de Transacciones</h2>
-                <p class="text-sm text-slate-400">Registro completo de tus jugadas y movimientos de saldo.</p>
-            </div>
-
-            <div class="bg-casino-card border border-casino-border rounded-3xl p-6 max-w-3xl mx-auto shadow-2xl">
-                <div class="overflow-x-auto">
-                    <table class="w-full text-left text-sm text-slate-300">
-                        <thead class="bg-slate-900/80 text-xs uppercase text-slate-400 border-b border-slate-800">
-                            <tr>
-                                <th class="p-3 rounded-l-lg">Juego / Acción</th>
-                                <th class="p-3">Apuesta</th>
-                                <th class="p-3">Resultado</th>
-                                <th class="p-3 rounded-r-lg">Monto</th>
-                            </tr>
-                        </thead>
-                        <tbody id="history-table-body" class="divide-y divide-slate-800/60">
-                            <tr>
-                                <td colspan="4" class="p-4 text-center text-slate-500">Aún no hay actividad registrada. ¡Comienza a jugar!</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-    </main>
-
-    <!-- Modal de Depósito -->
-    <div id="deposit-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-md hidden">
-        <div class="bg-casino-card border border-amber-500/40 rounded-3xl p-6 max-w-sm w-full mx-4 shadow-2xl text-center space-y-4">
-            <div class="text-4xl">💳</div>
-            <h3 class="font-serif text-xl font-bold text-amber-400">Recargar Saldo VIP</h3>
-            <p class="text-slate-300 text-sm">Selecciona el monto que deseas acreditar instantáneamente.</p>
-            
-            <div class="grid grid-cols-2 gap-3">
-                <button onclick="addDeposit(100)" class="py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl font-bold text-amber-300 text-sm transition cursor-pointer">+$100</button>
-                <button onclick="addDeposit(500)" class="py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl font-bold text-amber-300 text-sm transition cursor-pointer">+$500</button>
-                <button onclick="addDeposit(1000)" class="py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl font-bold text-amber-300 text-sm transition cursor-pointer">+$1,000</button>
-                <button onclick="addDeposit(5000)" class="py-2.5 bg-slate-900 hover:bg-slate-800 border border-slate-700 rounded-xl font-bold text-amber-300 text-sm transition cursor-pointer">+$5,000</button>
-            </div>
-
-            <button onclick="closeDepositModal()" class="w-full py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 font-semibold text-slate-300 text-sm cursor-pointer">Cancelar</button>
-        </div>
+  <article class="game" onclick="openModal('Lucky 7')">
+    <div class="game-art">🍀</div>
+    <div class="game-info">
+      <strong>LUCKY 7</strong>
+      <small>Próximamente</small>
     </div>
+  </article>
 
-    <!-- Script de Funcionalidad -->
-    <script>
-        let userBalance = 1500.00;
-        let gameHistory = [];
+  <article class="game" onclick="openModal('Royal Cards')">
+    <div class="game-art">🃏</div>
+    <div class="game-info">
+      <strong>ROYAL CARDS</strong>
+      <small>Próximamente</small>
+    </div>
+  </article>
 
-        function updateBalanceDisplay() {
-            document.getElementById('user-balance').innerText = '$' + userBalance.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-        }
+  <article class="game" onclick="openModal('Golden Wheel')">
+    <span class="tag">NUEVO</span>
+    <div class="game-art">🎡</div>
+    <div class="game-info">
+      <strong>GOLDEN WHEEL</strong>
+      <small>Próximamente</small>
+    </div>
+  </article>
 
-        function showModal(title, message, icon = '🎰') {
-            document.getElementById('modal-title').innerText = title;
-            document.getElementById('modal-message').innerText = message;
-            document.getElementById('modal-icon').innerText = icon;
-            document.getElementById('custom-modal').classList.remove('hidden');
-        }
+</section>
 
-        function closeModal() {
-            document.getElementById('custom-modal').classList.add('hidden');
-        }
+<div class="section-head" id="promos">
+  <h2>EL CLUB <span>VIP</span></h2>
+  <small>EXCLUSIVIDAD TIRRIBET</small>
+</div>
 
-        function openDepositModal() {
-            document.getElementById('deposit-modal').classList.remove('hidden');
-        }
+<section class="promo-grid">
 
-        function closeDepositModal() {
-            document.getElementById('deposit-modal').classList.add('hidden');
-        }
+  <article class="promo">
+    <div class="promo-icon">👑</div>
+    <div>
+      <h3>ROYAL MEMBERS</h3>
+      <p>Descubre el universo y las novedades de nuestra comunidad.</p>
+    </div>
+  </article>
 
-        function addDeposit(amount) {
-            userBalance += amount;
-            updateBalanceDisplay();
-            addHistoryRecord('Recarga Saldo', 0, 'Éxito', `+$${amount}`);
-            closeDepositModal();
-            showModal('¡Recarga Exitosa!', `Se acreditaron $${amount} a tu cuenta VIP.`, '💰');
-        }
+  <article class="promo">
+    <div class="promo-icon">🎁</div>
+    <div>
+      <h3>EXPERIENCIAS ESPECIALES</h3>
+      <p>Entérate de las actividades y eventos de TirriBet.</p>
+    </div>
+  </article>
 
-        function switchTab(tabId) {
-            document.querySelectorAll('.game-view').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('bg-amber-500', 'text-slate-950', 'shadow-md');
-                el.classList.add('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/60');
-            });
+</section>
 
-            document.getElementById('tab-' + tabId).classList.remove('hidden');
-            const activeBtn = document.getElementById('tab-btn-' + tabId);
-            if (activeBtn) {
-                activeBtn.classList.remove('text-slate-400', 'hover:text-white', 'hover:bg-slate-800/60');
-                activeBtn.classList.add('bg-amber-500', 'text-slate-950', 'shadow-md');
-            }
-        }
+<div class="section-head" id="actividad">
+  <h2>MURO <span>DE ACTIVIDAD</span></h2>
+  <small>DATOS DE EJEMPLO</small>
+</div>
 
-        function addHistoryRecord(game, bet, result, profit) {
-            gameHistory.unshift({ game, bet: bet > 0 ? `$${bet}` : '-', result, profit });
-            renderHistoryTable();
-        }
+<section class="activity">
 
-        function renderHistoryTable() {
-            const tbody = document.getElementById('history-table-body');
-            if (gameHistory.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="p-4 text-center text-slate-500">Aún no hay actividad registrada. ¡Comienza a jugar!</td></tr>`;
-                return;
-            }
+  <div class="activity-row">
+    <span>👑 Comunidad TirriBet</span>
+    <span>VIP</span>
+  </div>
 
-            let html = '';
-            gameHistory.forEach(item => {
-                let profitColor = item.profit.startsWith('+') ? 'text-emerald-400' : (item.profit.startsWith('-') ? 'text-red-400' : 'text-slate-300');
-                html += `
-                    <tr class="hover:bg-slate-900/40 transition">
-                        <td class="p-3 font-medium text-white">${item.game}</td>
-                        <td class="p-3">${item.bet}</td>
-                        <td class="p-3">${item.result}</td>
-                        <td class="p-3 font-bold ${profitColor}">${item.profit}</td>
-                    </tr>
-                `;
-            });
-            tbody.innerHTML = html;
-        }
+  <div class="activity-row">
+    <span>🎰 Nuevos juegos</span>
+    <span>PRÓXIMAMENTE</span>
+  </div>
 
-        // --- Slots ---
-        let slotBet = 10;
-        const slotSymbols = ['🍒', '🍋', '🔔', '⭐', '7️⃣', '💎'];
+  <div class="activity-row">
+    <span>🏆 Eventos especiales</span>
+    <span>EN PREPARACIÓN</span>
+  </div>
 
-        function adjustSlotBet(amount) {
-            if (slotBet + amount >= 10 && slotBet + amount <= 500) {
-                slotBet += amount;
-                document.getElementById('slot-bet-amount').innerText = '$' + slotBet;
-            }
-        }
+</section>
 
-        function spinSlots() {
-            if (userBalance < slotBet) {
-                showModal('Saldo Insuficiente', 'Recarga tu cuenta para continuar apostando.', '⚠️');
-                return;
-            }
-            userBalance -= slotBet;
-            updateBalanceDisplay();
+<p class="demo-note">
+  Plataforma de demostración. Los créditos son ficticios,
+  no tienen valor monetario ni pueden canjearse o retirarse.
+  No representa resultados, premios ni ganadores reales.
+</p>
 
-            const btn = document.getElementById('spin-btn');
-            btn.disabled = true;
+</main>
+</div>
 
-            let counter = 0;
-            const interval = setInterval(() => {
-                document.getElementById('reel-1').innerText = slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
-                document.getElementById('reel-2').innerText = slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
-                document.getElementById('reel-3').innerText = slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
-                counter++;
-                if (counter > 10) {
-                    clearInterval(interval);
-                    finalizeSpin();
-                }
-            }, 100);
-        }
+<footer>
+  <div class="logo">TIRRIBET</div>
+  <p>THE TIRRI EXPERIENCE</p>
+  <p>© 2026 TIRRIBET · TODOS LOS DERECHOS RESERVADOS</p>
+</footer>
 
-        function finalizeSpin() {
-            const r1 = slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
-            const r2 = slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
-            const r3 = Math.random() < 0.25 ? r1 : slotSymbols[Math.floor(Math.random() * slotSymbols.length)];
+<div class="modal-bg" id="modal-bg" onclick="closeOutside(event)">
+  <div class="modal">
+    <button class="close" onclick="closeModal()">×</button>
+    <h2 id="modal-title">TIRRIBET</h2>
+    <p id="modal-text">
+      Bienvenido a la experiencia TirriBet.
+    </p>
+    <button class="hero-btn" onclick="closeModal()">ENTENDIDO</button>
+  </div>
+</div>
 
-            document.getElementById('reel-1').innerText = r1;
-            document.getElementById('reel-2').innerText = r2;
-            document.getElementById('reel-3').innerText = r3;
+<script>
 
-            let multiplier = 0;
-            if (r1 === r2 && r2 === r3) {
-                if (r1 === '💎') multiplier = 50;
-                else if (r1 === '7️⃣') multiplier = 25;
-                else if (r1 === '🔔') multiplier = 15;
-                else if (r1 === '⭐') multiplier = 10;
-                else multiplier = 5;
-            }
+function toggleMenu() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
 
-            const msgEl = document.getElementById('slots-message');
-            if (multiplier > 0) {
-                const winnings = slotBet * multiplier;
-                userBalance += winnings;
-                updateBalanceDisplay();
-                msgEl.innerHTML = `<span class="text-emerald-400 font-bold">¡JACKPOT! ¡Ganaste $${winnings}!</span>`;
-                addHistoryRecord('Tragamonedas', slotBet, 'Victoria', `+$${winnings}`);
-            } else {
-                msgEl.innerHTML = `<span class="text-slate-400">Sin coincidencia. ¡Inténtalo de nuevo!</span>`;
-                addHistoryRecord('Tragamonedas', slotBet, 'Derrota', `-$${slotBet}`);
-            }
-            document.getElementById('spin-btn').disabled = false;
-        }
+function goTo(id) {
+  document.getElementById(id).scrollIntoView({
+    behavior:'smooth'
+  });
 
-        // --- Ruleta ---
-        let rouletteChip = 10;
-        let selectedRouletteBetKey = null;
-        let selectedRouletteBetName = null;
-        let selectedRouletteMultiplier = 0;
+  document.getElementById('sidebar').classList.remove('open');
+}
 
-        function selectRouletteChip(amount) {
-            rouletteChip = amount;
-            document.querySelectorAll('#chip-selectors button').forEach(btn => {
-                btn.classList.remove('bg-amber-500', 'text-slate-950', 'border-amber-300');
-                btn.classList.add('bg-slate-800', 'text-slate-300', 'border-slate-700');
-                if (btn.innerText.includes(amount)) {
-                    btn.classList.remove('bg-slate-800', 'text-slate-300', 'border-slate-700');
-                    btn.classList.add('bg-amber-500', 'text-slate-950', 'border-amber-300');
-                }
-            });
-        }
+function openModal(title) {
+  document.getElementById('modal-title').textContent = title;
 
-        function setRouletteBet(key, name, mult) {
-            selectedRouletteBetKey = key;
-            selectedRouletteBetName = name;
-            selectedRouletteMultiplier = mult;
-            document.getElementById('current-roulette-bet-label').innerText = selectedRouletteBetName;
-            document.getElementById('current-roulette-amount-label').innerText = '$' + rouletteChip;
-        }
+  document.getElementById('modal-text').textContent =
+    title === 'Tirri Slots'
+    ? 'El módulo de juegos de demostración se encuentra en desarrollo.'
+    : 'Estamos preparando nuevas experiencias para la comunidad TirriBet.';
 
-        function clearRouletteBet() {
-            selectedRouletteBetKey = null;
-            selectedRouletteBetName = null;
-            selectedRouletteMultiplier = 0;
-            document.getElementById('current-roulette-bet-label').innerText = 'Ninguna';
-            document.getElementById('current-roulette-amount-label').innerText = '$0';
-        }
+  document.getElementById('modal-bg').style.display = 'flex';
+}
 
-        function spinRoulette() {
-            if (!selectedRouletteBetKey) {
-                showModal('Apuesta Requerida', 'Selecciona a qué deseas apostar en la ruleta.', '⚠️');
-                return;
-            }
-            if (userBalance < rouletteChip) {
-                showModal('Saldo Insuficiente', 'Recarga tu cuenta para cubrir la ficha.', '⚠️');
-                return;
-            }
-            userBalance -= rouletteChip;
-            updateBalanceDisplay();
+function closeModal() {
+  document.getElementById('modal-bg').style.display = 'none';
+}
 
-            const btn = document.getElementById('spin-roulette-btn');
-            btn.disabled = true;
-            const wheelBox = document.getElementById('roulette-wheel-box');
-            wheelBox.classList.add('animate-spin-wheel');
+function closeOutside(event) {
+  if(event.target.id === 'modal-bg') closeModal();
+}
 
-            setTimeout(() => {
-                wheelBox.classList.remove('animate-spin-wheel');
-                const winningNumber = Math.floor(Math.random() * 37);
-                let color = 'green';
-                if (winningNumber !== 0) {
-                    const reds = [1,3,5,7,9,12,14,16,18,19,21,23,25,27,30,32,34,36];
-                    color = reds.includes(winningNumber) ? 'red' : 'black';
-                }
+</script>
 
-                document.getElementById('roulette-result-display').innerText = winningNumber;
-                let won = false;
-                if (selectedRouletteBetKey === 'red' && color === 'red') won = true;
-                else if (selectedRouletteBetKey === 'black' && color === 'black') won = true;
-                else if (selectedRouletteBetKey === 'green' && winningNumber === 0) won = true;
-                else if (selectedRouletteBetKey === 'even' && winningNumber !== 0 && winningNumber % 2 === 0) won = true;
-                else if (selectedRouletteBetKey === 'odd' && winningNumber !== 0 && winningNumber % 2 !== 0) won = true;
-
-                if (won) {
-                    const winnings = rouletteChip * selectedRouletteMultiplier;
-                    userBalance += winnings;
-                    updateBalanceDisplay();
-                    addHistoryRecord('Ruleta', rouletteChip, `Número ${winningNumber}`, `+$${winnings}`);
-                } else {
-                    addHistoryRecord('Ruleta', rouletteChip, `Número ${winningNumber}`, `-$${rouletteChip}`);
-                }
-                btn.disabled = false;
-            }, 3000);
-        }
-
-        // --- Blackjack ---
-        let bjBet = 20;
-        let bjDeck = [];
-        let playerHand = [];
-        let dealerHand = [];
-        let bjGameActive = false;
-
-        function adjustBjBet(amount) {
-            if (bjBet + amount >= 10 && bjBet + amount <= 500) {
-                bjBet += amount;
-                document.getElementById('bj-bet-amount').innerText = '$' + bjBet;
-            }
-        }
-
-        function createDeck() {
-            const suits = ['♠', '♣', '♥', '♦'];
-            const values = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
-            let deck = [];
-            for (let s of suits) {
-                for (let v of values) deck.push({ suit: s, value: v });
-            }
-            for (let i = deck.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [deck[i], deck[j]] = [deck[j], deck[i]];
-            }
-            return deck;
-        }
-
-        function calculateHandScore(hand) {
-            let score = 0, aces = 0;
-            for (let card of hand) {
-                if (card.value === 'A') { aces++; score += 11; }
-                else if (['J', 'Q', 'K'].includes(card.value)) score += 10;
-                else score += parseInt(card.value);
-            }
-            while (score > 21 && aces > 0) { score -= 10; aces--; }
-            return score;
-        }
-
-        function startBlackjack() {
-            if (userBalance < bjBet) {
-                showModal('Saldo Insuficiente', 'Recarga tu cuenta para jugar Blackjack.', '⚠️');
-                return;
-            }
-            userBalance -= bjBet;
-            updateBalanceDisplay();
-
-            bjDeck = createDeck();
-            playerHand = [bjDeck.pop(), bjDeck.pop()];
-            dealerHand = [bjDeck.pop(), bjDeck.pop()];
-            bjGameActive = true;
-
-            document.getElementById('bj-bet-control').classList.add('hidden');
-            document.getElementById('bj-action-controls').classList.remove('hidden');
-            renderBjCards(true);
-
-            if (calculateHandScore(playerHand) === 21) endBlackjackGame('blackjack');
-        }
-
-        function renderBjCards(hideDealerSecond) {
-            document.getElementById('player-cards').innerHTML = playerHand.map(c => renderCardHtml(c)).join('');
-            if (hideDealerSecond && bjGameActive) {
-                document.getElementById('dealer-cards').innerHTML = renderCardHtml(dealerHand[0]) + `<div class="bg-slate-900 border border-slate-800 rounded-lg w-14 h-20 flex items-center justify-center text-slate-500 text-xs">🂠</div>`;
-                document.getElementById('dealer-score').innerText = 'Puntuación: ?';
-            } else {
-                document.getElementById('dealer-cards').innerHTML = dealerHand.map(c => renderCardHtml(c)).join('');
-                document.getElementById('dealer-score').innerText = 'Puntuación: ' + calculateHandScore(dealerHand);
-            }
-            document.getElementById('player-score').innerText = 'Puntuación: ' + calculateHandScore(playerHand);
-        }
-
-        function renderCardHtml(card) {
-            const isRed = ['♥', '♦'].includes(card.suit);
-            return `<div class="bg-slate-900 border border-slate-700 rounded-xl w-14 h-20 flex flex-col justify-between p-2 shadow-md ${isRed ? 'text-red-500' : 'text-white'} font-bold text-xs"><div>${card.value}</div><div class="text-center text-lg">${card.suit}</div><div class="text-right">${card.value}</div></div>`;
-        }
-
-        function bjHit() {
-            if (!bjGameActive) return;
-            playerHand.push(bjDeck.pop());
-            renderBjCards(true);
-            if (calculateHandScore(playerHand) > 21) endBlackjackGame('bust');
-        }
-
-        function bjStand() {
-            if (!bjGameActive) return;
-            let dealerScore = calculateHandScore(dealerHand);
-            while (dealerScore < 17) {
-                dealerHand.push(bjDeck.pop());
-                dealerScore = calculateHandScore(dealerHand);
-            }
-            renderBjCards(false);
-
-            const playerScore = calculateHandScore(playerHand);
-            if (dealerScore > 21) endBlackjackGame('dealer_bust');
-            else if (playerScore > dealerScore) endBlackjackGame('player_win');
-            else if (playerScore < dealerScore) endBlackjackGame('dealer_win');
-            else endBlackjackGame('push');
-        }
-
-        function endBlackjackGame(condition) {
-            bjGameActive = false;
-            document.getElementById('bj-action-controls').classList.add('hidden');
-            document.getElementById('bj-bet-control').classList.remove('hidden');
-
-            if (condition === 'blackjack') {
-                const w = bjBet * 2.5; userBalance += w;
-                addHistoryRecord('Blackjack', bjBet, 'Blackjack', `+$${w - bjBet}`);
-            } else if (condition === 'bust') {
-                addHistoryRecord('Blackjack', bjBet, 'Te pasaste', `-$${bjBet}`);
-            } else if (condition === 'dealer_bust' || condition === 'player_win') {
-                const w = bjBet * 2; userBalance += w;
-                addHistoryRecord('Blackjack', bjBet, 'Victoria', `+$${bjBet}`);
-            } else if (condition === 'dealer_win') {
-                addHistoryRecord('Blackjack', bjBet, 'Derrota', `-$${bjBet}`);
-            } else if (condition === 'push') {
-                userBalance += bjBet;
-                addHistoryRecord('Blackjack', bjBet, 'Empate', `$0`);
-            }
-            updateBalanceDisplay();
-            renderBjCards(false);
-        }
-
-        updateBalanceDisplay();
-    </script>
 </body>
 </html>
-```
-eof
-
-¡Cópialo, actualiza tu archivo y fíjate cómo se ve ahora con ese diseño PRO de nivel superior!
-```
