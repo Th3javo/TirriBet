@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,6 +21,7 @@ body{background:var(--black);color:#fff;font-family:Inter,sans-serif}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;font-family:inherit}
 .gold{color:var(--gold)}
+
 header{
 height:85px;padding:0 5%;display:flex;align-items:center;
 justify-content:space-between;background:#090909;
@@ -32,6 +34,7 @@ border-bottom:1px solid var(--line);position:sticky;top:0;z-index:10
 nav{display:flex;gap:30px}
 nav a{font-size:11px;font-weight:800;color:#aaa;letter-spacing:1px}
 nav a:hover{color:var(--gold)}
+
 .btn{
 background:linear-gradient(120deg,#f5dfaa,#b58a43);
 color:#17120a;border:0;padding:14px 23px;
@@ -41,6 +44,7 @@ font-size:10px;font-weight:900;letter-spacing:1px
 background:transparent;color:white;border:1px solid var(--line);
 padding:13px 20px;font-size:10px;font-weight:800
 }
+
 .hero{
 min-height:620px;display:grid;grid-template-columns:1.1fr .9fr;
 align-items:center;padding:70px 8%;
@@ -58,6 +62,7 @@ margin-top:25px;text-transform:uppercase
 .hero h1 span{display:block;color:var(--gold)}
 .hero p{color:#aaa;line-height:2;font-size:13px;max-width:430px;margin-top:28px}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+
 .logo-display{display:flex;justify-content:center;align-items:center;position:relative}
 .logo-display:before{
 content:"";position:absolute;width:350px;height:350px;
@@ -70,12 +75,18 @@ position:relative;filter:drop-shadow(0 15px 30px #000);
 animation:float 5s ease-in-out infinite
 }
 @keyframes float{50%{transform:translateY(-12px)}}
+
 .marquee{
 padding:18px;text-align:center;background:#101010;
 color:#aaa;font-size:10px;letter-spacing:4px;
 border-bottom:1px solid var(--line)
 }
-.marquee span{color:var(--gold);margin:0 25px}
+.marquee img{
+width:19px;height:19px;object-fit:contain;
+vertical-align:middle;margin:0 12px
+}
+.marquee span{color:var(--gold);margin:0 15px}
+
 main{max-width:1450px;margin:auto;padding:0 5%}
 section.content{padding-top:75px}
 .label{color:var(--gold);font-size:9px;letter-spacing:4px;font-weight:800}
@@ -84,27 +95,38 @@ font-family:'Barlow Condensed',sans-serif;
 font-size:43px;margin-top:10px
 }
 .subtitle{color:#888;font-size:11px;margin-top:7px}
+
 .categories{display:flex;gap:10px;margin:25px 0;flex-wrap:wrap}
 .category{
 padding:11px 18px;background:#121212;color:#aaa;
 border:1px solid #30291d;font-size:10px;font-weight:800
 }
 .category.active,.category:hover{color:var(--gold);border-color:var(--gold)}
+
 .games{display:grid;grid-template-columns:repeat(4,1fr);gap:17px}
 .game{
 background:#141414;border:1px solid #29251e;
 transition:.3s;overflow:hidden;cursor:pointer
 }
 .game:hover{transform:translateY(-6px);border-color:var(--gold)}
+
 .game-art{
 height:190px;display:grid;place-items:center;
 background:radial-gradient(circle,#59401c,#15120d 70%);
-position:relative
+position:relative;overflow:hidden
 }
-.game-art span{font-size:75px;filter:drop-shadow(0 8px 15px #000)}
+.game-art img{
+width:100%;height:100%;object-fit:contain;
+padding:12px;
+filter:drop-shadow(0 8px 15px #000);
+transition:transform .4s
+}
+.game:hover .game-art img{transform:scale(1.08)}
+
 .game-info{padding:17px}
 .game-info strong{font-size:12px}
 .game-info p{font-size:9px;color:#888;margin-top:7px}
+
 .vip{
 margin-top:80px;padding:55px 6%;min-height:270px;
 display:flex;justify-content:space-between;align-items:center;
@@ -114,11 +136,13 @@ background:radial-gradient(ellipse at 85%,#80602c35,transparent 45%),#14120e
 .vip h2{font-size:55px;line-height:1}
 .vip p{font-size:12px;color:#aaa;line-height:1.8;max-width:440px;margin-top:15px}
 .vip .btn{margin-top:23px}
+
 .seal{
 width:125px;height:125px;border:1px solid var(--gold);
 border-radius:50%;display:grid;place-items:center;
-color:var(--gold);font-size:37px;font-weight:900
 }
+.seal img{width:85%;height:85%;object-fit:contain}
+
 .community{display:grid;grid-template-columns:1.2fr .8fr;gap:18px;margin-top:25px}
 .community article{
 background:linear-gradient(140deg,#1b1710,#101010);
@@ -127,16 +151,19 @@ border:1px solid var(--line);padding:30px;min-height:200px
 .community h3{font-family:'Barlow Condensed';font-size:32px}
 .community p{font-size:11px;color:#999;line-height:1.8;margin-top:10px}
 .community button{margin-top:20px}
+
 .news{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:25px}
 .news article{background:#121212;border:1px solid #29251e;padding:25px}
 .news h3{font-size:13px;color:var(--gold);margin-bottom:12px}
 .news p{font-size:11px;color:#999;line-height:1.8}
+
 footer{
 margin-top:90px;padding:45px 6%;text-align:center;
 background:#090909;border-top:1px solid var(--line)
 }
 footer strong{font-size:25px;color:var(--gold)}
 footer p{font-size:10px;color:#777;margin-top:15px;line-height:1.8}
+
 @media(max-width:850px){
 nav{gap:12px}nav a{font-size:9px}
 .games{grid-template-columns:repeat(2,1fr)}
@@ -157,10 +184,9 @@ main{padding:0 16px}
 h2{font-size:35px}
 .games{gap:10px}
 .game-art{height:140px}
-.game-art span{font-size:55px}
 .vip{padding:30px 20px}
 .vip h2{font-size:38px}
-.seal{width:75px;height:75px;font-size:25px;flex-shrink:0}
+.seal{width:75px;height:75px;flex-shrink:0}
 .community,.news{grid-template-columns:1fr}
 }
 </style>
@@ -198,7 +224,12 @@ h2{font-size:35px}
 </div>
 </section>
 
-<div class="marquee">♛ <span>TIRRIBET ROYAL CLUB</span> · EL UNIVERSO TIRRIANO · <span>THE ROYAL EXPERIENCE</span> ♛</div>
+<div class="marquee">
+<img src="INSERTAR_IMAGEN_AQUI" alt="Emblema">
+<span>TIRRIBET ROYAL CLUB</span> · EL UNIVERSO TIRRIANO ·
+<span>THE ROYAL EXPERIENCE</span>
+<img src="INSERTAR_IMAGEN_AQUI" alt="Emblema">
+</div>
 
 <main>
 <section class="content" id="juegos">
@@ -214,22 +245,35 @@ h2{font-size:35px}
 </div>
 
 <div class="games">
+
 <div class="game" data-type="slots" onclick="alert('Tirri Slots: próximamente')">
-<div class="game-art"><span>1794146537501.jpg</span></div>
+<div class="game-art">
+<img src="INSERTAR_IMAGEN_AQUI" alt="Tirri Slots">
+</div>
 <div class="game-info"><strong>TIRRI SLOTS</strong><p>Experiencia de demostración</p></div>
 </div>
+
 <div class="game" data-type="classic" onclick="alert('Royal Cards: próximamente')">
-<div class="game-art"><span>♠️</span></div>
+<div class="game-art">
+<img src="INSERTAR_IMAGEN_AQUI" alt="Royal Cards">
+</div>
 <div class="game-info"><strong>ROYAL CARDS</strong><p>Próximamente</p></div>
 </div>
+
 <div class="game" data-type="special" onclick="alert('Golden Wheel: próximamente')">
-<div class="game-art"><span>🎡</span></div>
+<div class="game-art">
+<img src="INSERTAR_IMAGEN_AQUI" alt="Golden Wheel">
+</div>
 <div class="game-info"><strong>GOLDEN WHEEL</strong><p>Próximamente</p></div>
 </div>
+
 <div class="game" data-type="slots" onclick="alert('Lucky Seven: próximamente')">
-<div class="game-art"><span>🍀</span></div>
+<div class="game-art">
+<img src="INSERTAR_IMAGEN_AQUI" alt="Lucky Seven">
+</div>
 <div class="game-info"><strong>LUCKY SEVEN</strong><p>Próximamente</p></div>
 </div>
+
 </div>
 </section>
 
@@ -240,7 +284,9 @@ h2{font-size:35px}
 <p>Un espacio especial para nuestra comunidad, con novedades, actividades y experiencias exclusivas.</p>
 <button class="btn" onclick="alert('Royal Club: próximamente')">DESCUBRIR EL CLUB →</button>
 </div>
-<div class="seal">TB</div>
+<div class="seal">
+<img src="INSERTAR_IMAGEN_AQUI" alt="Emblema TB">
+</div>
 </section>
 
 <section class="content" id="novedades">
